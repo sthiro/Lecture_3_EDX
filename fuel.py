@@ -1,23 +1,32 @@
+def percentage(prompt):
+
+    input_list = input("Fraction: ").split("/")       
+    x, y = int(input_list[0]), int(input_list[1]) # X / Y Format
+
+    output = (x / y) * 100 # Calculates percentage
+
+    if output > 100 :
+        raise ValueError("percentage value greater than 100")
+    if output < 0:
+        raise ValueError("Cannot be negative value")
     
-while True:    
-    try:
+    return output
 
-        fuel_list = input("Fraction: ").split("/")
-        is_decimal = fuel_list[0].isdecimal() and fuel_list[1].isdecimal() # Checks whether input are whole number
-        
-        x, y = int(fuel_list[0]), int(fuel_list[1]) # X / Y Format
+def main():
+    while True:    
+        try:
+            output = percentage("Fraction: ")
 
-        output = (x / y) * 100 # Calculates percentage
-        
-        if output > 100: continue
-        elif output <= 1:
-            print("E")
-        elif output >= 99:
-            print("F")
-        else:
-            print(round(output), "%", sep="")
+            if output <= 1:
+                print("E")
+            elif output >= 99:
+                print("F")
+            else: print(round(output), "%", sep="")
 
-        break
+        except (ValueError, ZeroDivisionError):
+            continue
 
-    except (ValueError, ZeroDivisionError):
-        continue
+        else: 
+            break
+
+main()
