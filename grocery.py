@@ -4,16 +4,17 @@ while True:
     try:
         item = input().upper() # make the input text upper case
 
-        if item not in grocery.values(): # Check whether it's not in grocery values
-            grocery[len(grocery)] = item
+        if item not in grocery.keys(): # Check whether it's not in grocery values
+            grocery[item] = 1 # To aboid starting with 0
 
         else:
-            index_val = list(grocery.values()).index(item) #Get an list like index for dic for a perticular value
-            grocery.update({index_val +1 :item}) # updating number fail need to check that NOTE
-
-
+          grocery[item] = grocery[item] + 1
 
     except EOFError:
 
-        print(grocery)
-        break
+        sorted_name = sorted(grocery) # Returns List for sorted grocery dict keys
+
+        for name in sorted_name:
+            print(grocery[name], name)
+
+        break   
